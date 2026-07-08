@@ -1,4 +1,5 @@
 alert("Welcome to HomeMind AI!");
+const API_URL = "http://127.0.0.1:5000";
 
 // =============================
 // Show Logged-in User
@@ -235,10 +236,23 @@ function addDevice() {
     row.insertCell(2).innerHTML =
         '<button onclick="editDevice(this)">✏️ Edit</button> ' +
         '<button onclick="deleteDevice(this)">🗑️ Delete</button>';
+        fetch(API_URL + "/add_device", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        name: deviceName,
+        status: deviceStatus
+    })
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error(error));
 
     
 
-    container.appendChild(card);
+    
 
     document.getElementById("deviceName").value = "";
     document.getElementById("deviceStatus").value = "ON";
