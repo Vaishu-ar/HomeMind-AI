@@ -2,109 +2,42 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - HomeMind AI</title>
 
-    <title>HomeMind AI</title>
-
-    <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="register.css">
 </head>
 
 <body>
 
-    <!-- Top Bar -->
-    <div class="top-bar">
+<div class="register-container">
 
-        <h3 id="welcomeUser"></h3>
+    <h1>🏠 HomeMind AI</h1>
 
-        <button onclick="logout()">🚪 Logout</button>
+    <h2>Create Account</h2>
 
-    </div>
+    <input type="text" id="name" placeholder="Enter Full Name">
 
-    <!-- Dashboard Title -->
-    <h1>🏠 HomeMind AI Dashboard</h1>
+    <input type="email" id="email" placeholder="Enter Email">
 
-    <!-- Device Status -->
-    <h3 id="lightStatus">💡 Light : OFF</h3>
-    <h3 id="fanStatus">🌀 Fan : OFF</h3>
-    <h3 id="acStatus">❄️ AC : OFF</h3>
+    <input type="text" id="username" placeholder="Enter Username">
 
-    <!-- Command History -->
-    <h2>📜 Command History</h2>
-    <div id="history"></div>
+    <input type="password" id="password" placeholder="Enter Password">
 
-    <!-- Live Clock -->
-    <h2>🕒 Current Time</h2>
-    <h3 id="clock"></h3>
+    <input type="password" id="confirmPassword" placeholder="Confirm Password">
 
-    <!-- Default Device Controls -->
-    <div class="container">
+    <button onclick="register()">Register</button>
 
-        <button onclick="lightOn()">💡 Light ON</button>
-        <button onclick="lightOff()">💡 Light OFF</button>
-
-        <button onclick="fanOn()">🌀 Fan ON</button>
-        <button onclick="fanOff()">🌀 Fan OFF</button>
-
-        <button onclick="acOn()">❄️ AC ON</button>
-        <button onclick="acOff()">❄️ AC OFF</button>
-
-    </div>
+    <p id="message"></p>
 
     <br>
 
-    <!-- Voice Command -->
-    <button onclick="startVoice()">🎤 Start Voice Command</button>
+    <a href="login.html">Already have an account? Login</a>
 
-    <hr>
+</div>
 
-    <!-- Device Management -->
-    <h2>➕ Device Management</h2>
-
-    <div class="device-form">
-
-        <input
-            type="text"
-            id="deviceName"
-            placeholder="Enter Device Name">
-
-        <select id="deviceStatus">
-
-            <option value="ON">ON</option>
-            <option value="OFF">OFF</option>
-
-        </select>
-
-        <button onclick="addDevice()">
-            ➕ Add Device
-        </button>
-
-    </div>
-
-    <!-- Device Table -->
-    <table id="deviceTable">
-
-        <tr>
-
-            <th>Device Name</th>
-            <th>Status</th>
-            <th>Action</th>
-
-        </tr>
-
-    </table>
-
-    <br>
-
-    <!-- Dynamic Devices -->
-    <h2>📱 Added Smart Devices</h2>
-
-    <div id="dynamicDevices"></div>
-
-    <script src="script.js"></script>
+<script src="register.js"></script>
 
 </body>
-
 </html>
