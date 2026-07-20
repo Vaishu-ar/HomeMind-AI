@@ -1,4 +1,4 @@
-function register() {
+async function register() {
 
     let name = document.getElementById("name").value.trim();
     let email = document.getElementById("email").value.trim();
@@ -16,25 +16,37 @@ function register() {
         return;
     }
 
-    let users = JSON.parse(localStorage.getItem("users")) || [];
+    try {
 
-    let userExists = users.find(user => user.username === username);
+        const response = await fetch("https://homemind-ai.onrender.com/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                username: username,
+                password: password
+            })
+        });
 
-    if (userExists) {
-        document.getElementById("message").innerHTML = "❌ Username already exists.";
-        return;
+        const result = await response.json();
+
+        if (result.success) {
+            alert("✅ Registration Successful!");
+            window.location.href = "login.html";
+        } else {
+            document.getElementById("message").innerHTML = result.message;
+        }
+
+    } catch (error) {
+
+        console.log(error);
+
+        document.getElementById("message").innerHTML =
+            "❌ Cannot connect to Backend";
+
     }
 
-    users.push({
-        name: name,
-        email: email,
-        username: username,
-        password: password
-    });
-
-    localStorage.setItem("users", JSON.stringify(users));
-
-    alert("✅ Registration Successful!");
-
-    window.location.href = "login.html";
 }

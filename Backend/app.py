@@ -48,11 +48,7 @@ def status():
 @app.route("/register", methods=["POST"])
 def register():
 
-    print("========== REGISTER API CALLED ==========")
-
     data = request.get_json()
-
-    print("Received Data :", data)
 
     if not data:
         return jsonify({
@@ -78,12 +74,35 @@ def register():
     db.session.add(new_user)
     db.session.commit()
 
-    print("USER SAVED SUCCESSFULLY")
-
     return jsonify({
         "success": True,
         "message": "Registration Successful"
     })
+
+
+# ---------------- LOGIN API ----------------
+@app.route("/login", methods=["POST"])
+def login():
+
+    data = request.get_json()
+
+    user = User.query.filter_by(
+        username=data["username"],
+        password=data["password"]
+    ).first()
+
+    if user:
+        return jsonify({
+            "success": True,
+            "name": user.name,
+            "username": user.username
+        })
+
+    return jsonify({
+        "success": False,
+        "message": "Invalid Username or Password"
+    })
+
 
 # ---------------- TEMP DEVICE STORAGE ----------------
 devices = []
