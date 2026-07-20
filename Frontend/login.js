@@ -1,29 +1,50 @@
-function login() {
+async function login() {
 
     let username = document.getElementById("username").value.trim();
     let password = document.getElementById("password").value;
 
-    // Get all registered users
-    let users = JSON.parse(localStorage.getItem("users")) || [];
+    if (username === "" || password === "") {
+        document.getElementById("message").innerHTML =
+            "⚠️ Please enter Username and Password";
+        return;
+    }
 
-    // Find matching user
-    let user = users.find(
-        u => u.username === username && u.password === password
-    );
+    try {
 
-    if (user) {
+        const response = await fetch("https://homemind-ai.onrender.com/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        });
 
-        // Save current logged-in user
-        localStorage.setItem("currentUser", JSON.stringify(user));
+        const result = await response.json();
 
-        alert("✅ Login Successful!");
+        if (result.success) {
 
-        window.location.href = "index.html";
+            localStorage.setItem("currentUser", JSON.stringify(result));
 
-    } else {
+            alert("✅ Login Successful!");
+
+            window.location.href = "index.html";
+
+        } else {
+
+            document.getElementById("message").innerHTML = result.message;
+
+        }
+
+    } catch (error) {
+
+        console.log(error);
 
         document.getElementById("message").innerHTML =
-            "❌ Invalid Username or Password";
+            "❌ Cannot connect to Backend";
 
     }
+
 }
