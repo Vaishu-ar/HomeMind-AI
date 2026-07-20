@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>HomeMind AI</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- Top Bar -->
+
+    <div class="top-bar">
+
+        <h3 id="welcomeUser"></h3>
+
+        <button onclick="logout()">🚪 Logout</button>
+
+    </div>
+
+    <h1>🏠 HomeMind AI Dashboard</h1>
+
+    <h3 id="lightStatus">💡 Light : OFF</h3>
+    <h3 id="fanStatus">🌀 Fan : OFF</h3>
+    <h3 id="acStatus">❄️ AC : OFF</h3>
+
+    <h2>📜 Command History</h2>
+
+    <div id="history"></div>
+
+    <h2>🕒 Current Time</h2>
+
+    <h3 id="clock"></h3>
+
+    <div class="container">
+
+        <button onclick="lightOn()">💡 Light ON</button>
+
+        <button onclick="lightOff()">💡 Light OFF</button>
+
+        <button onclick="fanOn()">🌀 Fan ON</button>
+
+        <button onclick="fanOff()">🌀 Fan OFF</button>
+
+        <button onclick="acOn()">❄️ AC ON</button>
+
+        <button onclick="acOff()">❄️ AC OFF</button>
+
+    </div>
+
+    <br>
+
+    <button onclick="startVoice()">🎤 Start Voice Command</button>
+
+    <hr>
+
+    <h2>➕ Device Management</h2>
+
+    <div class="device-form">
+
+        <input
+            type="text"
+            id="deviceName"
+            placeholder="Device Name">
+
+        <select id="deviceStatus">
+
+            <option value="ON">ON</option>
+
+            <option value="OFF">OFF</option>
+
+        </select>
+
+        <button onclick="addDevice()">
+
+            Add Device
+
+        </button>
+
+    </div>
+
+    <br>
+
+    <table border="1" id="deviceTable">
+
+        <tr>
+
+            <th>Device Name</th>
+
+            <th>Status</th>
+
+            <th>Action</th>
+
+        </tr>
+
+    </table>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
