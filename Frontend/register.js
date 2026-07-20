@@ -16,10 +16,8 @@ function register() {
         return;
     }
 
-    // Get existing users
     let users = JSON.parse(localStorage.getItem("users")) || [];
 
-    // Check duplicate username
     let userExists = users.find(user => user.username === username);
 
     if (userExists) {
@@ -27,7 +25,6 @@ function register() {
         return;
     }
 
-    // Add new user
     users.push({
         name: name,
         email: email,
@@ -35,7 +32,6 @@ function register() {
         password: password
     });
 
-    // Save users
     localStorage.setItem("users", JSON.stringify(users));
 
     alert("✅ Registration Successful!");
