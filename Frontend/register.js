@@ -18,6 +18,8 @@ async function register() {
 
     try {
 
+        console.log("Register API Calling...");
+
         const response = await fetch("https://homemind-ai.onrender.com/register", {
             method: "POST",
             headers: {
@@ -31,18 +33,27 @@ async function register() {
             })
         });
 
+        console.log("Status:", response.status);
+
         const result = await response.json();
 
+        console.log(result);
+
         if (result.success) {
+
             alert("✅ Registration Successful!");
+
             window.location.href = "login.html";
+
         } else {
+
             document.getElementById("message").innerHTML = result.message;
+
         }
 
     } catch (error) {
 
-        console.log(error);
+        console.error(error);
 
         document.getElementById("message").innerHTML =
             "❌ Cannot connect to Backend";
