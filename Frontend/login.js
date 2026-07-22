@@ -30,7 +30,7 @@ async function login() {
 
             alert("✅ Login Successful!");
 
-            window.location.href = "index.html";
+            window.location.href = "dashboard.html";
         } else {
 
             document.getElementById("message").innerHTML = result.message;
